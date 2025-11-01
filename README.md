@@ -70,10 +70,5 @@ This README is:
 - **Copy-ready**: ready to paste into your GitHub repo.  
 - **Hackathon-friendly**: anyone can test APIs immediately using the live Vercel link.  
 
----
-
-If you want, I can also **add example Postman request bodies directly in the README** so someone can copy-paste them to test your APIs instantly.  
-
-Do you want me to do that?
 
 
