@@ -62,13 +62,3 @@ PORT=5000
 
 
 
----
-
-This README is:
-
-- **Complete**: covers all endpoints, setup instructions, tech stack.  
-- **Copy-ready**: ready to paste into your GitHub repo.  
-- **Hackathon-friendly**: anyone can test APIs immediately using the live Vercel link.  
-
-
-
