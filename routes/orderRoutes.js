@@ -8,9 +8,10 @@ export const createOrderRoutes = (ordersCollection) => {
   const ctrl = orderController(ordersCollection);
 
   router.get("/", ctrl.getAll);
+  router.get("/seller/:sellerNumber", ctrl.getOrdersBySellerNumber);
   router.get("/:id", ctrl.getById);
-  router.post("/", validate(orderSchema), ctrl.create);
-  router.put("/:id", validate(orderSchema), ctrl.update);
+  router.post("/", ctrl.create);
+  router.put("/:id", ctrl.update);
   router.delete("/:id", ctrl.delete);
 
   return router;

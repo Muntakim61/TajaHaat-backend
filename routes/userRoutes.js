@@ -9,8 +9,8 @@ export const createUserRoutes = (usersCollection) => {
 
   router.get("/", ctrl.getAll);
   router.get("/:id", ctrl.getById);
-  router.post("/", validate(userSchema), ctrl.create);
-  router.put("/:id", validate(userSchema), ctrl.update);
+  router.post("/",  ctrl.create);
+  router.put("/:id",   ctrl.update);
   router.delete("/:id", ctrl.delete);
 
   return router;

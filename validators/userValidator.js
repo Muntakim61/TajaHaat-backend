@@ -8,7 +8,6 @@ export const userSchema = Joi.object({
     "string.empty": "Address is required",
   }),
   phoneNumber: Joi.string()
-    .pattern(/^\+88\d{11}$/)
     .required()
     .messages({
       "string.pattern.base": "Phone number must be 11 digits",
@@ -19,10 +18,9 @@ export const userSchema = Joi.object({
     "any.required": "Email is required",
   }),
   subscriptionStatus: Joi.string()
-    .valid("ফ্রি", "গোল্ড", "প্লাটিনাম" , "ডায়মন্ড" )
-    .default("ফ্রি"),
+    .default("free"),
   level: Joi.number().integer().min(0).default(0),
   rating: Joi.number().min(0).max(5).default(0),
   image: Joi.string().uri().optional(),
-  role: Joi.string().valid("buyer", "seller", "admin").required(),
+  role: Joi.string().required(),
 });

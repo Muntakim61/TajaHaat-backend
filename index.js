@@ -17,7 +17,7 @@ const startServer = async () => {
   const productCollection = db.collection("products");
   const ordersCollection = db.collection("orders");
   const usersCollection = db.collection("users");
-  app.use("/product", createProductRoutes(productCollection));
+  app.use("/products", createProductRoutes(productCollection));
   app.use("/orders", createOrderRoutes(ordersCollection));
   app.use("/users", createUserRoutes(usersCollection));
   app.get("/", (req, res) => {

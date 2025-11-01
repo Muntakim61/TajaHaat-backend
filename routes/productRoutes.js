@@ -10,8 +10,9 @@ export const createProductRoutes = (productCollection) => {
 
   router.get("/", ctrl.getAll);
   router.get("/:id", ctrl.getById);
-  router.post("/", validate(productSchema), ctrl.create);
-  router.put("/:id", validate(productSchema), ctrl.update);
+  router.get("/seller/:sellerNumber", ctrl.getBySellerNumber);
+  router.post("/", ctrl.create);
+  router.put("/:id",  ctrl.update);
   router.delete("/:id", ctrl.delete);
 
   return router;

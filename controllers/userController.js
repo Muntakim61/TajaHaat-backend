@@ -26,24 +26,18 @@ export const userController = (usersCollection) => ({
   },
 
   create: async (req, res) => {
-    const { error, value } = userSchema.validate(req.body);
-    if (error) return res.status(400).json({ error: error.details[0].message });
-    value.email = value.email.toLowerCase();
     try {
-      // Check for duplicate email or phone
-      const existingUser = await usersCollection.findOne({
-        $or: [{ email: value.email }, { phoneNumber: value.phoneNumber }],
-      });
-      if (existingUser) {
-        return res
-          .status(409)
-          .json({ error: "User with this email or phone already exists" });
-      }
+      const user = { ...req.body };
 
-      const result = await usersCollection.insertOne(value);
-      res.status(201).json(result);
-    } catch {
-      res.status(500).json({ error: "Failed to create user" });
+      // Optional: normalize email if provided
+      if (user.email) user.email = user.email.toLowerCase();
+
+      const result = await usersCollection.insertOne(user);
+      res.status(201).json({ message: "User created successfully", result });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: "Failed to create user", details: error.message });
     }
   },
   update: async (req, res) => {
@@ -51,19 +45,20 @@ export const userController = (usersCollection) => ({
     if (!ObjectId.isValid(id))
       return res.status(400).json({ error: "Invalid ID" });
 
-    const { error, value } = userSchema.validate(req.body);
-    if (error) return res.status(400).json({ error: error.details[0].message });
-
     try {
       const result = await usersCollection.updateOne(
         { _id: new ObjectId(id) },
-        { $set: value }
+        { $set: req.body }
       );
+
       if (result.matchedCount === 0)
         return res.status(404).json({ error: "User not found" });
+
       res.status(200).json({ message: "User updated successfully" });
-    } catch {
-      res.status(500).json({ error: "Failed to update user" });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: "Failed to update user", details: error.message });
     }
   },
 
@@ -74,11 +69,15 @@ export const userController = (usersCollection) => ({
 
     try {
       const result = await usersCollection.deleteOne({ _id: new ObjectId(id) });
+
       if (result.deletedCount === 0)
         return res.status(404).json({ error: "User not found" });
+
       res.status(200).json({ message: "User deleted successfully" });
-    } catch {
-      res.status(500).json({ error: "Failed to delete user" });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: "Failed to delete user", details: error.message });
     }
   },
 });
