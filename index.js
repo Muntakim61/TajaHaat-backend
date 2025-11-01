@@ -19,7 +19,7 @@ const startServer = async () => {
   const usersCollection = db.collection("users");
   app.use("/product", createProductRoutes(productCollection));
   app.use("/orders", createOrderRoutes(ordersCollection));
-  app.use("/user", createUserRoutes(usersCollection));
+  app.use("/users", createUserRoutes(usersCollection));
   app.get("/", (req, res) => {
     res.status(200).send("tajaHaat server is running successfully");
   });
