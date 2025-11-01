@@ -8,7 +8,7 @@ export const userSchema = Joi.object({
     "string.empty": "Address is required",
   }),
   phoneNumber: Joi.string()
-    .pattern(/^\d{11}$/)
+    .pattern(/^\+88\d{11}$/)
     .required()
     .messages({
       "string.pattern.base": "Phone number must be 11 digits",

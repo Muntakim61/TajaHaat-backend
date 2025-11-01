@@ -22,7 +22,10 @@ export const productSchema = Joi.object({
     "number.min": "Stock status cannot be negative",
     "any.required": "Stock status is required",
   }),
-  email: Joi.string().email().required().messages({
-    "string.email": "Invalid email format",
-  }),
+  sellerName: Joi.string().required(),
+  sellerNumber: Joi.string()
+    .pattern(/^\+88\d{1}$/)
+    .messages({
+      "string.pattern.base": "Buyer number must be an 11-digit number",
+    }),
 });

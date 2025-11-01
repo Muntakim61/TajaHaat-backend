@@ -6,7 +6,7 @@ export const orderSchema = Joi.object({
   quantity: Joi.number().integer().min(1).required(),
   price: Joi.number().required(),
   sellerNumber: Joi.string()
-    .pattern(/^\d{11}$/)
+    .pattern(/^\+88\d{11}$/)
     .required()
     .messages({
       "string.pattern.base": "Seller number must be an 11-digit number",
@@ -14,7 +14,7 @@ export const orderSchema = Joi.object({
     }),
   sellerName: Joi.string().required(),
   buyerNumber: Joi.string()
-    .pattern(/^\d{11}$/)
+    .pattern(/^\+88\d{11}$/)
     .messages({
       "string.pattern.base": "Buyer number must be an 11-digit number",
     }),
