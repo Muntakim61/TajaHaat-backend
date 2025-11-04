@@ -8,7 +8,7 @@ The server is deployed on **Vercel**, making it accessible for testing without a
 
 ## **Live API Base URL**
 
-[https://taja-haat-backend.vercel.app](https://taja-haat-backend.vercel.app)
+[https://taja-haat-backend-muntakim.vercel.app](https://taja-haat-backend-muntakim.vercel.app)
 
 - Root endpoint `/` confirms the server is running:
 
